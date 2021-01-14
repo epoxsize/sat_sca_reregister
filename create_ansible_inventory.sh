@@ -16,4 +16,4 @@ do
   hammer host list --search activation_key=$a --fields ip | grep -v IP | grep -v "-"
   hammer host list --search activation_key=$a --fields ip | grep -v IP | grep -v "-" >> $FILE_NAME
 done
-echo "Please check hosts.file for any errors in IP-address"
+echo "Please check $FILE_NAME for any errors in IP-address"
