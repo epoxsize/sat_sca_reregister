@@ -1,0 +1,15 @@
+---
+- name: playbook to re-register hosts in satellite according to their activation keys
+  hosts: all
+  vars:
+    org_name: Default_Organization
+  tasks:
+  - name: Checking that addresses and keys are correct
+    debug:
+      msg: Registering host with IP {{inventory_hostname}} and FQDN {{ansible_fqdn}} with the key {{group_names[0]}}
+  - name: Re-Register with RHSM key
+    redhat_subscription:
+      state: present
+      activationkey: "{{group_names[0]}}"
+      org_id: "{{org_name}}"
+      force_register: True
